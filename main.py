@@ -15,26 +15,26 @@ def preview():
     result = top10rows.to_json(orient="records")
     return result
 
-@app.route('/payer/<value>', methods=['GET'])
+@app.route('/code/<value>', methods=['GET'])
 def icdcode(value):
     print('value: ', value)
-    filtered = df[df['payer'] == value]
+    filtered = df[df['principal_diagnosis_code'] == value]
     return filtered.to_json(orient="records")
 
 #MEDICARE
-@app.route('/payer/<value>', methods=['GET'])
+@app.route('/code/<value>', methods=['GET'])
 def payer(value):
     print('value: ', value)
-    filtered = df[df['payer'] == value]
+    filtered = df[df['principal_diagnosis_code'] == value]
     if len(filtered) <= 0:
         return 'There is nothing here'
     else: 
         return filtered.to_json(orient="records")
 
 #4
-@app.route('/payer/<value>/age_group/<value2>', methods=['GET'])
-def payer2(value, value2):
-    filtered = df[df['payer'] == value]
+@app.route('/code/<value>/age_group/<value2>', methods=['GET'])
+def code2(value, value2):
+    filtered = df[df['principal_diagnosis_code'] == value]
     filtered2 = filtered[filtered['age_group_code'] == value2]
     if len(filtered2) <= 0:
         return 'There is nothing here'

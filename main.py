@@ -32,10 +32,10 @@ def payer(value):
         return filtered.to_json(orient="records")
 
 #4
-@app.route('/code/<value>/age_group/<value2>', methods=['GET'])
+@app.route('/code/<value>/sex/<value2>', methods=['GET'])
 def code2(value, value2):
     filtered = df[df['principal_diagnosis_code'] == value]
-    filtered2 = filtered[filtered['age_group_code'] == value2]
+    filtered2 = filtered[filtered['sex'] == value2]
     if len(filtered2) <= 0:
         return 'There is nothing here'
     else: 
